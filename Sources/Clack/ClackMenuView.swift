@@ -18,7 +18,8 @@ struct ClackMenuView: View {
         .frame(width: 270)
         .background(
             RoundedRectangle(cornerRadius: 14, style: .continuous)
-                .fill(.ultraThinMaterial)
+                .fill(.thinMaterial)
+                .opacity(0.92)
         )
     }
 
@@ -42,6 +43,9 @@ struct ClackMenuView: View {
                 Text("Capture Mode: \(model.captureMode)")
                 Text("Accessibility: \(model.accessibilityStatus)")
                 Text("Input Monitoring: \(model.inputMonitoringStatus)")
+                Divider()
+                Text("On/Off Shortcut: ⌥⌘T")
+                    .font(.footnote)
                 Divider()
                 Button("Open Accessibility Settings") {
                     model.openAccessibilitySettings()

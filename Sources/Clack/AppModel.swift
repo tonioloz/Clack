@@ -2,7 +2,7 @@ import AppKit
 import Combine
 
 @MainActor
-final class AppModel: ObservableObject {
+final class AppModel: NSObject, ObservableObject {
     @Published var isEnabled: Bool {
         didSet {
             UserDefaults.standard.set(isEnabled, forKey: Keys.isEnabled)
@@ -67,7 +67,7 @@ final class AppModel: ObservableObject {
     private var wordTracker = WordTracker()
     private var lastKeyTime: TimeInterval?
 
-    init() {
+    override init() {
         let defaults = UserDefaults.standard
 
         let keyRaw = defaults.string(forKey: Keys.selectedKey) ?? KeyNote.a.rawValue
@@ -102,12 +102,29 @@ final class AppModel: ObservableObject {
         audioEngine.setReverbMix(initialReverb)
         audioEngine.apply(profile: initialSound.profile)
 
+        super.init()
+
         keyCapture.onKeyDown = { [weak self] keyEvent in
             self?.handleKeyEvent(keyEvent)
         }
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleToggleHotKey),
+            name: .clackToggleHotKey,
+            object: nil
+        )
+
         refreshPermissionStatus()
         handleEnabledChange()
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    @objc private func handleToggleHotKey() {
+        toggleEnabled()
     }
 
     private func handleEnabledChange() {

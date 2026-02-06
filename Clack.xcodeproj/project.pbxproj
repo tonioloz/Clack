@@ -17,6 +17,7 @@
 		A10000000000000000000008 /* ClackMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000019 /* ClackMenuView.swift */; };
 		A10000000000000000000009 /* KnobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001A /* KnobView.swift */; };
 		A1000000000000000000000A /* RockerSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001B /* RockerSwitchView.swift */; };
+		A1000000000000000000000C /* HotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001D /* HotKeyManager.swift */; };
 		A1000000000000000000000B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001C /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		A10000000000000000000019 /* ClackMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClackMenuView.swift; path = Sources/Clack/ClackMenuView.swift; sourceTree = "<group>"; };
 		A1000000000000000000001A /* KnobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KnobView.swift; path = Sources/Clack/KnobView.swift; sourceTree = "<group>"; };
 		A1000000000000000000001B /* RockerSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RockerSwitchView.swift; path = Sources/Clack/RockerSwitchView.swift; sourceTree = "<group>"; };
+		A1000000000000000000001D /* HotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HotKeyManager.swift; path = Sources/Clack/HotKeyManager.swift; sourceTree = "<group>"; };
 		A1000000000000000000001C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Clack/Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +72,7 @@
 				A10000000000000000000019 /* ClackMenuView.swift */,
 				A1000000000000000000001A /* KnobView.swift */,
 				A1000000000000000000001B /* RockerSwitchView.swift */,
+				A1000000000000000000001D /* HotKeyManager.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				A10000000000000000000008 /* ClackMenuView.swift in Sources */,
 				A10000000000000000000009 /* KnobView.swift in Sources */,
 				A1000000000000000000000A /* RockerSwitchView.swift in Sources */,
+				A1000000000000000000000C /* HotKeyManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

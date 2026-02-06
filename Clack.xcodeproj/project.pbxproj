@@ -1,0 +1,260 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000001 /* ClackApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000011 /* ClackApp.swift */; };
+		A10000000000000000000002 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000012 /* AppModel.swift */; };
+		A10000000000000000000003 /* AudioEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000013 /* AudioEngine.swift */; };
+		A10000000000000000000004 /* NoteMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000014 /* NoteMapping.swift */; };
+		A10000000000000000000005 /* KeyCaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000015 /* KeyCaptureManager.swift */; };
+		A10000000000000000000006 /* SecureInputChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000016 /* SecureInputChecker.swift */; };
+		A10000000000000000000007 /* AccessibilityPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000017 /* AccessibilityPrompt.swift */; };
+		A10000000000000000000008 /* ClackMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000019 /* ClackMenuView.swift */; };
+		A10000000000000000000009 /* KnobView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001A /* KnobView.swift */; };
+		A1000000000000000000000A /* RockerSwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001B /* RockerSwitchView.swift */; };
+		A1000000000000000000000B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001C /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A10000000000000000000010 /* Clack.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = Clack.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10000000000000000000011 /* ClackApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClackApp.swift; path = Sources/Clack/ClackApp.swift; sourceTree = "<group>"; };
+		A10000000000000000000012 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppModel.swift; path = Sources/Clack/AppModel.swift; sourceTree = "<group>"; };
+		A10000000000000000000013 /* AudioEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioEngine.swift; path = Sources/Clack/AudioEngine.swift; sourceTree = "<group>"; };
+		A10000000000000000000014 /* NoteMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NoteMapping.swift; path = Sources/Clack/NoteMapping.swift; sourceTree = "<group>"; };
+		A10000000000000000000015 /* KeyCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeyCaptureManager.swift; path = Sources/Clack/KeyCaptureManager.swift; sourceTree = "<group>"; };
+		A10000000000000000000016 /* SecureInputChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SecureInputChecker.swift; path = Sources/Clack/SecureInputChecker.swift; sourceTree = "<group>"; };
+		A10000000000000000000017 /* AccessibilityPrompt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccessibilityPrompt.swift; path = Sources/Clack/AccessibilityPrompt.swift; sourceTree = "<group>"; };
+		A10000000000000000000018 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Clack/Info.plist; sourceTree = "<group>"; };
+		A10000000000000000000019 /* ClackMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ClackMenuView.swift; path = Sources/Clack/ClackMenuView.swift; sourceTree = "<group>"; };
+		A1000000000000000000001A /* KnobView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KnobView.swift; path = Sources/Clack/KnobView.swift; sourceTree = "<group>"; };
+		A1000000000000000000001B /* RockerSwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RockerSwitchView.swift; path = Sources/Clack/RockerSwitchView.swift; sourceTree = "<group>"; };
+		A1000000000000000000001C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Clack/Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A10000000000000000000030 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10000000000000000000040 = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000041 /* Sources */,
+				A10000000000000000000018 /* Info.plist */,
+				A1000000000000000000001C /* Assets.xcassets */,
+				A10000000000000000000042 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A10000000000000000000041 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000011 /* ClackApp.swift */,
+				A10000000000000000000012 /* AppModel.swift */,
+				A10000000000000000000013 /* AudioEngine.swift */,
+				A10000000000000000000014 /* NoteMapping.swift */,
+				A10000000000000000000015 /* KeyCaptureManager.swift */,
+				A10000000000000000000016 /* SecureInputChecker.swift */,
+				A10000000000000000000017 /* AccessibilityPrompt.swift */,
+				A10000000000000000000019 /* ClackMenuView.swift */,
+				A1000000000000000000001A /* KnobView.swift */,
+				A1000000000000000000001B /* RockerSwitchView.swift */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000042 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000010 /* Clack.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A10000000000000000000050 /* Clack */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000000000000000000060 /* Build configuration list for PBXNativeTarget "Clack" */;
+			buildPhases = (
+				A10000000000000000000070 /* Sources */,
+				A10000000000000000000030 /* Frameworks */,
+				A10000000000000000000071 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Clack;
+			productName = Clack;
+			productReference = A10000000000000000000010 /* Clack.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10000000000000000000080 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = A10000000000000000000090 /* Build configuration list for PBXProject "Clack" */;
+			compatibilityVersion = "Xcode 15.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A10000000000000000000040;
+			productRefGroup = A10000000000000000000042 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A10000000000000000000050 /* Clack */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A10000000000000000000071 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000000000000000000000B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A10000000000000000000070 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000001 /* ClackApp.swift in Sources */,
+				A10000000000000000000002 /* AppModel.swift in Sources */,
+				A10000000000000000000003 /* AudioEngine.swift in Sources */,
+				A10000000000000000000004 /* NoteMapping.swift in Sources */,
+				A10000000000000000000005 /* KeyCaptureManager.swift in Sources */,
+				A10000000000000000000006 /* SecureInputChecker.swift in Sources */,
+				A10000000000000000000007 /* AccessibilityPrompt.swift in Sources */,
+				A10000000000000000000008 /* ClackMenuView.swift in Sources */,
+				A10000000000000000000009 /* KnobView.swift in Sources */,
+				A1000000000000000000000A /* RockerSwitchView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A100000000000000000000A0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Clack/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antonio.clack;
+				PRODUCT_NAME = Clack;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		A100000000000000000000A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Clack/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antonio.clack;
+				PRODUCT_NAME = Clack;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		A100000000000000000000B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antonio.clack;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		A100000000000000000000B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antonio.clack;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A10000000000000000000060 /* Build configuration list for PBXNativeTarget "Clack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A100000000000000000000A0 /* Debug */,
+				A100000000000000000000A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A10000000000000000000090 /* Build configuration list for PBXProject "Clack" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A100000000000000000000B0 /* Debug */,
+				A100000000000000000000B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A10000000000000000000080 /* Project object */;
+}

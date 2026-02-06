@@ -80,11 +80,13 @@ struct NoteMapper {
     private let key: KeyNote
     private let scale: ScaleType
     private let maxOctaves: Int = 3
-    private let baseOctave: Int = 3
+    private let baseOctave: Int
 
-    init(key: KeyNote, scale: ScaleType) {
+    init(key: KeyNote, scale: ScaleType, octaveShift: Int) {
         self.key = key
         self.scale = scale
+        let rawBase = 3 + octaveShift
+        self.baseOctave = max(1, min(6, rawBase))
     }
 
     func note(for word: String, position: Int) -> UInt8 {

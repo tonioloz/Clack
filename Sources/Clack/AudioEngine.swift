@@ -4,6 +4,9 @@ import AudioToolbox
 enum SoundProfileType: String, CaseIterable, Identifiable {
     case spaceyRhodes
     case tightRhodes
+    case synthPad
+    case handpan
+    case panFlute
 
     var id: String { rawValue }
 
@@ -11,6 +14,9 @@ enum SoundProfileType: String, CaseIterable, Identifiable {
         switch self {
         case .spaceyRhodes: return "Spacey Rhodes"
         case .tightRhodes: return "Tight Rhodes"
+        case .synthPad: return "Synth Pad"
+        case .handpan: return "Handpan"
+        case .panFlute: return "Pan Flute"
         }
     }
 
@@ -18,31 +24,58 @@ enum SoundProfileType: String, CaseIterable, Identifiable {
         switch self {
         case .spaceyRhodes:
             return SoundProfile(
+                program: 4,
                 delayTime: 0.35,
                 delayFeedback: 28,
                 defaultDelayMix: 45,
-                defaultFilterMix: 55,
                 reverbPreset: .largeHall,
                 defaultReverbMix: 40
             )
         case .tightRhodes:
             return SoundProfile(
-                delayTime: 0.15,
-                delayFeedback: 10,
-                defaultDelayMix: 18,
-                defaultFilterMix: 75,
+                program: 4,
+                delayTime: 0.18,
+                delayFeedback: 16,
+                defaultDelayMix: 25,
                 reverbPreset: .mediumRoom,
-                defaultReverbMix: 18
+                defaultReverbMix: 22
+            )
+        case .synthPad:
+            return SoundProfile(
+                program: 88,
+                delayTime: 0.45,
+                delayFeedback: 32,
+                defaultDelayMix: 35,
+                reverbPreset: .largeHall,
+                defaultReverbMix: 45
+            )
+        case .handpan:
+            return SoundProfile(
+                program: 114,
+                delayTime: 0.28,
+                delayFeedback: 24,
+                defaultDelayMix: 30,
+                reverbPreset: .mediumHall,
+                defaultReverbMix: 38
+            )
+        case .panFlute:
+            return SoundProfile(
+                program: 75,
+                delayTime: 0.25,
+                delayFeedback: 18,
+                defaultDelayMix: 22,
+                reverbPreset: .largeRoom,
+                defaultReverbMix: 35
             )
         }
     }
 }
 
 struct SoundProfile {
+    let program: UInt8
     let delayTime: TimeInterval
     let delayFeedback: Float
     let defaultDelayMix: Double
-    let defaultFilterMix: Double
     let reverbPreset: AVAudioUnitReverbPreset
     let defaultReverbMix: Double
 }
@@ -51,53 +84,60 @@ struct SoundProfile {
 final class ClackAudioEngine {
     private let engine = AVAudioEngine()
     private let sampler = AVAudioUnitSampler()
-    private let eq = AVAudioUnitEQ(numberOfBands: 1)
     private let delay = AVAudioUnitDelay()
     private let reverb = AVAudioUnitReverb()
 
     private let midiChannel: UInt8 = 0
+    private var currentProfile: SoundProfile
+    private var currentDelayAmount: Double
 
     init() {
+        let profile = SoundProfileType.spaceyRhodes.profile
+        currentProfile = profile
+        currentDelayAmount = profile.defaultDelayMix
+
         engine.attach(sampler)
-        engine.attach(eq)
         engine.attach(delay)
         engine.attach(reverb)
 
         let mainMixer = engine.mainMixerNode
-        engine.connect(sampler, to: eq, format: nil)
-        engine.connect(eq, to: delay, format: nil)
+        engine.connect(sampler, to: delay, format: nil)
         engine.connect(delay, to: reverb, format: nil)
         engine.connect(reverb, to: mainMixer, format: nil)
 
-        configureFilter()
-        apply(profile: SoundProfileType.spaceyRhodes.profile)
-        loadRhodesInstrument()
+        apply(profile: profile)
+        setDelayAmount(profile.defaultDelayMix)
+        setReverbMix(profile.defaultReverbMix)
         startEngine()
     }
 
     func apply(profile: SoundProfile) {
+        currentProfile = profile
         delay.delayTime = profile.delayTime
         delay.feedback = profile.delayFeedback
         reverb.loadFactoryPreset(profile.reverbPreset)
+        setDelayAmount(currentDelayAmount)
+        loadInstrument(program: profile.program)
     }
 
-    func setDelayMix(_ mix: Double) {
-        delay.wetDryMix = Float(max(0, min(100, mix)))
+    func setDelayAmount(_ amount: Double) {
+        let clamped = max(0, min(100, amount))
+        currentDelayAmount = clamped
+        delay.wetDryMix = Float(clamped)
+
+        let t = clamped / 100.0
+        let timeScale = 0.35 + (1.65 * t)
+        let feedbackScale = 0.35 + (2.2 * t)
+
+        let time = min(1.0, max(0.08, currentProfile.delayTime * timeScale))
+        let feedback = min(85, max(5, currentProfile.delayFeedback * Float(feedbackScale)))
+
+        delay.delayTime = time
+        delay.feedback = feedback
     }
 
     func setReverbMix(_ mix: Double) {
         reverb.wetDryMix = Float(max(0, min(100, mix)))
-    }
-
-    func setFilterMix(_ mix: Double) {
-        let clamped = max(0, min(100, mix))
-        let minCutoff: Float = 600
-        let maxCutoff: Float = 14000
-        let t = Float(clamped / 100.0)
-        let cutoff = minCutoff + (maxCutoff - minCutoff) * t
-        if let band = eq.bands.first {
-            band.frequency = cutoff
-        }
     }
 
     func play(note: UInt8, velocity: UInt8) {
@@ -109,14 +149,14 @@ final class ClackAudioEngine {
         }
     }
 
-    private func loadRhodesInstrument() {
+    private func loadInstrument(program: UInt8) {
         let soundbankPath = "/System/Library/Components/CoreAudio.component/Contents/Resources/gs_instruments.dls"
         let url = URL(fileURLWithPath: soundbankPath)
 
         do {
             try sampler.loadSoundBankInstrument(
                 at: url,
-                program: 4,
+                program: program,
                 bankMSB: UInt8(kAUSampler_DefaultMelodicBankMSB),
                 bankLSB: UInt8(kAUSampler_DefaultBankLSB)
             )
@@ -131,14 +171,5 @@ final class ClackAudioEngine {
         } catch {
             print("ClackAudioEngine: Failed to start audio engine: \(error)")
         }
-    }
-
-    private func configureFilter() {
-        guard let band = eq.bands.first else { return }
-        band.filterType = .lowPass
-        band.bypass = false
-        band.bandwidth = 1.0
-        band.gain = 0
-        setFilterMix(60)
     }
 }

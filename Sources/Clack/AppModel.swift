@@ -24,6 +24,13 @@ final class AppModel: ObservableObject {
         }
     }
 
+    @Published var octaveShift: Double {
+        didSet {
+            UserDefaults.standard.set(octaveShift, forKey: Keys.octaveShift)
+            updateNoteMapper()
+        }
+    }
+
     @Published var selectedSound: SoundProfileType {
         didSet {
             UserDefaults.standard.set(selectedSound.rawValue, forKey: Keys.selectedSound)
@@ -34,14 +41,14 @@ final class AppModel: ObservableObject {
     @Published var delayMix: Double {
         didSet {
             UserDefaults.standard.set(delayMix, forKey: Keys.delayMix)
-            audioEngine.setDelayMix(delayMix)
+            audioEngine.setDelayAmount(delayMix)
         }
     }
 
-    @Published var filterMix: Double {
+    @Published var reverbMix: Double {
         didSet {
-            UserDefaults.standard.set(filterMix, forKey: Keys.filterMix)
-            audioEngine.setFilterMix(filterMix)
+            UserDefaults.standard.set(reverbMix, forKey: Keys.reverbMix)
+            audioEngine.setReverbMix(reverbMix)
         }
     }
 
@@ -72,24 +79,27 @@ final class AppModel: ObservableObject {
         let initialSound = SoundProfileType(rawValue: soundRaw) ?? .spaceyRhodes
 
         let initialDelay = defaults.object(forKey: Keys.delayMix) as? Double ?? initialSound.profile.defaultDelayMix
-        let initialFilter = defaults.object(forKey: Keys.filterMix) as? Double ?? initialSound.profile.defaultFilterMix
+        let initialReverb = defaults.object(forKey: Keys.reverbMix) as? Double
+            ?? defaults.object(forKey: Keys.legacyFilterMix) as? Double
+            ?? initialSound.profile.defaultReverbMix
+        let initialShift = defaults.object(forKey: Keys.octaveShift) as? Double ?? 0
         let initialEnabled = defaults.bool(forKey: Keys.isEnabled)
 
         _selectedKey = Published(initialValue: initialKey)
         _selectedScale = Published(initialValue: initialScale)
         _selectedSound = Published(initialValue: initialSound)
         _delayMix = Published(initialValue: initialDelay)
-        _filterMix = Published(initialValue: initialFilter)
+        _reverbMix = Published(initialValue: initialReverb)
+        _octaveShift = Published(initialValue: initialShift)
         _isEnabled = Published(initialValue: initialEnabled)
 
-        noteMapper = NoteMapper(key: initialKey, scale: initialScale)
+        noteMapper = NoteMapper(key: initialKey, scale: initialScale, octaveShift: Int(initialShift.rounded()))
 
         bundleId = Bundle.main.bundleIdentifier ?? "Unknown"
         bundlePath = Bundle.main.bundlePath
 
-        audioEngine.setDelayMix(initialDelay)
-        audioEngine.setFilterMix(initialFilter)
-        audioEngine.setReverbMix(initialSound.profile.defaultReverbMix)
+        audioEngine.setDelayAmount(initialDelay)
+        audioEngine.setReverbMix(initialReverb)
         audioEngine.apply(profile: initialSound.profile)
 
         keyCapture.onKeyDown = { [weak self] keyEvent in
@@ -139,17 +149,16 @@ final class AppModel: ObservableObject {
     }
 
     private func updateNoteMapper() {
-        noteMapper = NoteMapper(key: selectedKey, scale: selectedScale)
+        noteMapper = NoteMapper(key: selectedKey, scale: selectedScale, octaveShift: Int(octaveShift.rounded()))
     }
 
     private func applySoundProfile(resetMixes: Bool) {
         audioEngine.apply(profile: selectedSound.profile)
         if resetMixes {
             delayMix = selectedSound.profile.defaultDelayMix
-            filterMix = selectedSound.profile.defaultFilterMix
-            audioEngine.setDelayMix(delayMix)
-            audioEngine.setFilterMix(filterMix)
-            audioEngine.setReverbMix(selectedSound.profile.defaultReverbMix)
+            reverbMix = selectedSound.profile.defaultReverbMix
+            audioEngine.setDelayAmount(delayMix)
+            audioEngine.setReverbMix(reverbMix)
         }
     }
 
@@ -243,5 +252,7 @@ private enum Keys {
     static let selectedScale = "clack.selectedScale"
     static let selectedSound = "clack.selectedSound"
     static let delayMix = "clack.delayMix"
-    static let filterMix = "clack.filterMix"
+    static let reverbMix = "clack.reverbMix"
+    static let legacyFilterMix = "clack.filterMix"
+    static let octaveShift = "clack.octaveShift"
 }

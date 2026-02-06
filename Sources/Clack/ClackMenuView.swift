@@ -41,17 +41,13 @@ struct ClackMenuView: View {
                 }
                 Text("Capture Mode: \(model.captureMode)")
                 Text("Accessibility: \(model.accessibilityStatus)")
-                Text("Input Monitoring: Check System Settings")
-                Text("Bundle: \(model.bundleId)")
+                Text("Input Monitoring: \(model.inputMonitoringStatus)")
                 Divider()
                 Button("Open Accessibility Settings") {
                     model.openAccessibilitySettings()
                 }
                 Button("Open Input Monitoring Settings") {
                     model.openInputMonitoringSettings()
-                }
-                Button("Reveal App in Finder") {
-                    model.revealAppInFinder()
                 }
                 Button("Refresh Permission Status") {
                     model.refreshPermissionStatus()
@@ -129,6 +125,19 @@ struct ClackMenuView: View {
                         }
                         .menuStyle(.borderlessButton)
                     }
+
+                    VStack(alignment: .leading, spacing: 6) {
+                        HStack {
+                            Text("Range")
+                                .font(.system(size: 12, weight: .semibold))
+                                .foregroundStyle(.secondary)
+                            Spacer()
+                            Text(model.octaveShiftLabel)
+                                .font(.system(size: 12, weight: .semibold))
+                                .foregroundStyle(.primary)
+                        }
+                        Slider(value: $model.octaveShift, in: -2...2, step: 1)
+                    }
                 }
                 .padding(.top, 6)
             } label: {
@@ -153,7 +162,7 @@ struct ClackMenuView: View {
     private var knobRow: some View {
         HStack(spacing: 20) {
             KnobView(title: "Delay", value: $model.delayMix)
-            KnobView(title: "Filter", value: $model.filterMix)
+            KnobView(title: "Reverb", value: $model.reverbMix)
         }
         .frame(maxWidth: .infinity)
     }
@@ -184,5 +193,13 @@ struct ClackMenuView: View {
             RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .fill(Color.white.opacity(0.05))
         )
+    }
+}
+
+private extension AppModel {
+    var octaveShiftLabel: String {
+        let value = Int(octaveShift.rounded())
+        if value == 0 { return "Mid" }
+        return value > 0 ? "+\(value)" : "\(value)"
     }
 }

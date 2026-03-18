@@ -8,7 +8,7 @@ Now you can make music while you work.
 
 ![Clack App Screenshot](public/Clack.png)
 
-**[Watch product demo](https://screen.studio/share/MnxKJCwc)** · [Video (MP4)](public/Built-in%20Retina%20Display.mp4)
+**[Watch product demo](https://screen.studio/share/qS5H5RDs)** · [Video (MP4)](public/Built-in%20Retina%20Display.mp4)
 
 ## How it works
 
